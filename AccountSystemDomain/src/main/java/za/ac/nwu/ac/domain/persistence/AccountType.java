@@ -1,4 +1,4 @@
-package za.ac.nwu.ac.domain.persistance;
+package za.ac.nwu.ac.domain.persistence;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -7,7 +7,7 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "ACCOUNT_TYPE", schema = "DISCOVERYSYSTEM")
+@Table(name = "", schema = "JANCO")//ToDo set table name
 public class AccountType implements Serializable{
 
     private static final long serialVersionUID = 383219200206707742L;
@@ -16,9 +16,6 @@ public class AccountType implements Serializable{
     private String mnemonic;
     private String accountTypeName;
     private LocalDate creationDate;
-
-    private Set<AccountTransaction> accountTransaction;
-    private Set<UserAccount> userAccount;
 
     public AccountType() {
     }
@@ -68,14 +65,6 @@ public class AccountType implements Serializable{
     public void setCreationDate(LocalDate creationDate) {
         this.creationDate = creationDate;
     }
-
-    @OneToMany(targetEntity = AccountTransaction.class, fetch = FetchType.LAZY, mappedBy = "accountType", orphanRemoval = true, cascade=CascadeType.PERSIST)
-    public Set<AccountTransaction> getAccountTransaction(){
-        return accountTransaction;
-    }
-
-    @OneToMany(targetEntity = UserAccount.class, fetch = FetchType.LAZY, mappedBy = "accountType", orphanRemoval = true, cascade = CascadeType.PERSIST)
-    public Set<UserAccount> getUserAccount(){ return userAccount;}
 
     @Override
     public boolean equals(Object o) {
