@@ -2,17 +2,20 @@ package za.ac.nwu.ac.web.sb.controller;
 
 /**/
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import za.ac.nwu.ac.domain.service.GeneralResponse;
+import za.ac.nwu.ac.domain.GeneralResponse;
 
 @RestController
 @RequestMapping("account-type")
+
 public class AccountTypeController {
 
     @GetMapping("/all")
