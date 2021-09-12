@@ -15,13 +15,13 @@
 
     <dependencies>
         <dependency>
-            <groupId>za.ac.nwu</groupId>
+            <groupId>za.ac.nwu.ac</groupId>
             <artifactId>AccountSystemDomain</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>za.ac.nwu</groupId>
+            <groupId>za.ac.nwu.ac</groupId>
             <artifactId>AccountSystemLogic</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -29,6 +29,26 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-bean-validators</artifactId>
         </dependency>
 
     </dependencies>

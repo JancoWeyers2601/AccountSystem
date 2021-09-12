@@ -15,7 +15,7 @@
     <artifactId>AccountSystem</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <description>This is my Account System for Discovery</description>
+    <description>Discovery Account System</description>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
