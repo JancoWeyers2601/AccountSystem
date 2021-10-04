@@ -36,7 +36,7 @@
 
     </dependencies>
 
-    <build>                                                 <!--Build for code coverage-->
+    <build>
         <plugins>
             <plugin>
                 <groupId>org.jacoco</groupId>
