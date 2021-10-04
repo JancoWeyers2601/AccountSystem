@@ -7,48 +7,61 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "", schema = "JANCO")//ToDo set table name
-public class AccountType implements Serializable{
+@Table(name = "DEMO_ACCOUNT_TYPE", schema = "JANCO")     //Table name & Username (Schema might not be needed)
+public class AccountType implements Serializable {
 
-    private static final long serialVersionUID = 383219200206707742L;
+    private static final long serialVersionUID = 3866606557126890054L;
 
-    private Long accountTypeID;
+    private long accountTypeID;
     private String mnemonic;
     private String accountTypeName;
-    private LocalDate creationDate;
+
+    private LocalDate creationDate; //use this date not something like utilDate
+
+
+    private Set<AccountTransaction> accountTransactions;
 
     public AccountType() {
     }
 
-    public AccountType(Long accountTypeID, String mnemonic, String accountTypeName, LocalDate creationDate) {
+    public AccountType(long accountTypeID, String mnemonic, String accountTypeName, LocalDate creationDate) {
         this.accountTypeID = accountTypeID;
         this.mnemonic = mnemonic;
         this.accountTypeName = accountTypeName;
         this.creationDate = creationDate;
     }
 
+    public AccountType(String mnemonic, String accountTypeName, LocalDate creationDate)
+    {
+        this.mnemonic = mnemonic;
+        this.accountTypeName = accountTypeName;
+        this.creationDate = creationDate;
+    }
+
+
+
     @Id
-    @SequenceGenerator(name= "SEQ_ACC_TYPE_ID", sequenceName = "DISCOVERYSYSTEM.SEQ_ACC_TYPE_ID", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ACC_TYPE_ID")
-    @Column(name="ACCOUNT_TYPE_ID")
-    public Long getAccountTypeID() {
+    @SequenceGenerator(name = "VIT_RSA_GENERIC_SEQ", sequenceName = "MARNUS.VIT_RSA_GENERIC_SEQ", allocationSize = 1)       //SequenceName =?
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "VIT_RSA_GENERIC_SEQ")
+    @Column(name = "ACCOUNT_TYPE_ID") //Primary key column
+    public long getAccountTypeID() {
         return accountTypeID;
     }
 
-    public void setAccountTypeID(Long accountTypeID) {
+    public void setAccountTypeID(long accountTypeID) {
         this.accountTypeID = accountTypeID;
     }
 
-    @Column(name= "MNEMONIC")
+    @Column(name = "MNEMONIC") //mnemonic column
     public String getMnemonic() {
         return mnemonic;
     }
 
-    public void setMnemonic(String mnemonic) {
+    public void setMnemonic(String  mnemonic) {
         this.mnemonic = mnemonic;
     }
 
-    @Column(name = "ACCOUNT_TYPE_NAME")
+    @Column(name = "ACCOUNT_TYPE_NAME") //accountTypeName column
     public String getAccountTypeName() {
         return accountTypeName;
     }
@@ -66,12 +79,22 @@ public class AccountType implements Serializable{
         this.creationDate = creationDate;
     }
 
+    @OneToMany(targetEntity = AccountTransaction.class, fetch = FetchType.LAZY, mappedBy = "accountType", orphanRemoval = true, cascade = CascadeType.PERSIST)
+    public Set<AccountTransaction> getAccountTransactions()
+    {
+        return accountTransactions;
+    }
+
+    public void setAccountTransactions(Set<AccountTransaction> accountTransactions) {
+        this.accountTransactions = accountTransactions;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AccountType that = (AccountType) o;
-        return Objects.equals(accountTypeID, that.accountTypeID) && Objects.equals(mnemonic, that.mnemonic) && Objects.equals(accountTypeName, that.accountTypeName) && Objects.equals(creationDate, that.creationDate);
+        return accountTypeID == that.accountTypeID && mnemonic == that.mnemonic && accountTypeName == that.accountTypeName && Objects.equals(creationDate, that.creationDate);
     }
 
     @Override
@@ -83,8 +106,8 @@ public class AccountType implements Serializable{
     public String toString() {
         return "AccountType{" +
                 "accountTypeID=" + accountTypeID +
-                ", mnemonic='" + mnemonic + '\'' +
-                ", accountTypeName='" + accountTypeName + '\'' +
+                ", mnemonic=" + mnemonic +
+                ", accountTypeName=" + accountTypeName +
                 ", creationDate=" + creationDate +
                 '}';
     }

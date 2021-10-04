@@ -1,4 +1,4 @@
 package za.ac.nwu.ac.domain.dto;
 
-public class UserAccountDTO {
+public class UserAccountDto {
 }
