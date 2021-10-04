@@ -11,7 +11,7 @@ import za.ac.nwu.ac.repo.persistence.AccountTypeRepository;
 @Import({RepositoryConfig.class})
 @Configuration
 @ComponentScan(basePackages = {
-        "za.ac.nwu.ac.translator"
+        "za.ac.nwu.ac.translater"
 })
 public class TranslatorConfig {
 
