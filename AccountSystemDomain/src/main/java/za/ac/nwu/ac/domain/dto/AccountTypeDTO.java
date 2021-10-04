@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class AccountTypeDto implements Serializable {
+public class AccountTypeDTO implements Serializable {
 
     private static final long serialVersionUID = -7731154715176897719L;
 
@@ -14,16 +14,16 @@ public class AccountTypeDto implements Serializable {
     private String accountTypeName;
     private LocalDate creationDate;
 
-    public AccountTypeDto() {
+    public AccountTypeDTO() {
     }
 
-    public AccountTypeDto(String mnemonic, String accountTypeName, LocalDate creationDate) {
+    public AccountTypeDTO(String mnemonic, String accountTypeName, LocalDate creationDate) {
         this.mnemonic = mnemonic;
         this.accountTypeName = accountTypeName;
         this.creationDate = creationDate;
     }
 
-    public AccountTypeDto(AccountType accountType){
+    public AccountTypeDTO(AccountType accountType){
         this.setAccountTypeName(accountType.getAccountTypeName());
         this.setMnemonic(accountType.getMnemonic());
         this.setCreationDate(accountType.getCreationDate());
@@ -57,7 +57,7 @@ public class AccountTypeDto implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AccountTypeDto that = (AccountTypeDto) o;
+        AccountTypeDTO that = (AccountTypeDTO) o;
         return Objects.equals(mnemonic, that.mnemonic) && Objects.equals(accountTypeName, that.accountTypeName) && Objects.equals(creationDate, that.creationDate);
     }
 
