@@ -6,13 +6,13 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
-@Table(name = "DEMO_ACCOUNT_TYPE", schema = "JANCO")
+@Table(name = "DEMO_ACCOUNT_TYPE", schema = "ACCSYS")
 public class AccountTransaction implements Serializable{
 
     private static final long serialVersionUID = 1199041377884282633L;
 
     @Id
-    @SequenceGenerator(name = "VIT_RSA_GENERIC_SEQ", sequenceName = "MARNUS.VIT_RSA_GENERIC_SEQ", allocationSize = 1) //sequenceName
+    @SequenceGenerator(name = "VIT_RSA_GENERIC_SEQ", sequenceName = "ACCSYS.VIT_RSA_GENERIC_SEQ", allocationSize = 1) //sequenceName
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "VIT_RSA_GENERIC_SEQ")
     @Column(name = "TX_ID") //Primary key column
     private long transactionID;

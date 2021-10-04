@@ -7,7 +7,7 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "DEMO_ACCOUNT_TYPE", schema = "JANCO")     //Table name & Username (Schema might not be needed)
+@Table(name = "DEMO_ACCOUNT_TYPE", schema = "ACCSYS")     //Table name & Username (Schema might not be needed)
 public class AccountType implements Serializable {
 
     private static final long serialVersionUID = 3866606557126890054L;
@@ -41,7 +41,7 @@ public class AccountType implements Serializable {
 
 
     @Id
-    @SequenceGenerator(name = "VIT_RSA_GENERIC_SEQ", sequenceName = "MARNUS.VIT_RSA_GENERIC_SEQ", allocationSize = 1)       //SequenceName =?
+    @SequenceGenerator(name = "VIT_RSA_GENERIC_SEQ", sequenceName = "ACCSYS.VIT_RSA_GENERIC_SEQ", allocationSize = 1)       //SequenceName =?
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "VIT_RSA_GENERIC_SEQ")
     @Column(name = "ACCOUNT_TYPE_ID") //Primary key column
     public long getAccountTypeID() {

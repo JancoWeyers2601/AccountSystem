@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
-@Table(name = "USER_ACCOUNT", schema = "JANCO")     //Table name & Username (Schema might not be needed)
+@Table(name = "TBL_ACCOUNT", schema = "ACCSYS")     //Table name & Username (Schema might not be needed)
 public class UserAccount implements Serializable {
 
     private static final long serialVersionUID = 1721935955949522116L;
@@ -34,7 +34,7 @@ public class UserAccount implements Serializable {
     }
 
     @Id
-    @SequenceGenerator(name = "USER_ACCOUNT_ID_SEQ", sequenceName = "MARNUS.USER_ACCOUNT_ID_SEQ", allocationSize = 1)       //SequenceName =?
+    @SequenceGenerator(name = "USER_ACCOUNT_ID_SEQ", sequenceName = "ACCSYS.USER_ACCOUNT_ID_SEQ", allocationSize = 1)       //SequenceName =?
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USER_ACCOUNT_ID_SEQ")
     @Column(name = "USER_ACCOUNT_ID") //Primary key column
     public Long getUserAccountId() {
