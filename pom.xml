@@ -23,6 +23,8 @@
 
         <springfox-swagger.version>2.9.2</springfox-swagger.version>
         <swagger.version>1.5.20</swagger.version>
+
+        <haltOnFailure>true</haltOnFailure>
     </properties>
 
     <modules>
@@ -111,7 +113,7 @@
                     <version>0.8.3</version>
                     <configuration>
 
-                        <!--suppress UnresolvedMavenProperty -->
+                        <!-- mvn clean install -DhaltOnFailure=false -->
                         <haltOnFailure>${haltOnFailure}</haltOnFailure>
 
                         <rules>
