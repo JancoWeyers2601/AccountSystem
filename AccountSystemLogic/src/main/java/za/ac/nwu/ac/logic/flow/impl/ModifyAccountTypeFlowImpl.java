@@ -23,7 +23,7 @@ public class ModifyAccountTypeFlowImpl implements ModifyAccountTypeFlow {
     }
 
     @Override
-    public AccountTypeDto deleteAcountType(String mnemonic) {
+    public AccountTypeDto deleteAccountType(String mnemonic) {
         LOGGER.info("AccountType to be deleted, use {}", mnemonic);
 
         AccountTypeDto result =accountTypeTranslator.deleteAcountType(mnemonic);
@@ -40,5 +40,13 @@ public class ModifyAccountTypeFlowImpl implements ModifyAccountTypeFlow {
         LOGGER.info("AccountType was updated, used output object {}", result);
         return result;
     }
+
+    /*@Override
+    public AccountTypeDto updateAccountType(String mnemonic, String newAccountTypeName, LocalDate newCreationDate) {
+        LOGGER.info("AccountType to Update, use input object {}", accountType);
+        AccountTypeDto result =accountTypeTranslator.updateAccountType(accountType);
+        LOGGER.info("AccountType was updated, used output object {}", result);
+        return result;
+    }*/
 
 }
