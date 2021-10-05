@@ -51,7 +51,7 @@ public class AccountTypeController {
         return new ResponseEntity<>(response, HttpStatus.OK);                           //Returns a list of all the accountTypes
     }
 
-    @PostMapping("")                                                                    //Gets received from the RequestMapping above
+    @PostMapping("")   //Gets received from the RequestMapping above
     @ApiOperation(value = "Creates a new AccountType.", notes = "Creates a new AccountType in the DataBase.")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "AccountType was created successfully", response = GeneralResponse.class),
