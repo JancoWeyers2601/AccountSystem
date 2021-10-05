@@ -126,4 +126,28 @@ public class AccountTypeControllerTest {
 
     }
 
+    @Test
+    public void updateAccountType () throws Exception
+    {
+        String expectedResponse = "{\successful\":true,\"payload\":"+
+            "{\mnemonic\":\"Play\",\"accountTypeName\":\"The new Play account type name\",\"creationDate\":[2021,4,1]}}";
+
+        AccountTypeDto accountType = new AccountTypeDto("Play","The new Play account type name" ,LocalDate.parse("2021-04-01"));
+
+        when(modifyAccountTypeFlow.updateAccountType(eq(accountType))).thenReturn(accountType);
+
+        MvcResult mvcResult = mockMvc.perform(delete((String.format("%s/%s",ACCOUNT_TYPE_CONTROLLER_URL,"Play")))
+                        .param("newAccountTypeName","The new account type name")
+                        .param("newCreationDate","2021-04-01")
+                        .servletPath(APP_URL)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isCreated())
+                .andReturn();
+
+        verify(modifyAccountTypeFlow, times(1)).deleteAccountType(eq("Play"));
+        assertEquals(expectedResponse, mvcResult.getResponse().getContentAsString());
+
+    }
+
 }
