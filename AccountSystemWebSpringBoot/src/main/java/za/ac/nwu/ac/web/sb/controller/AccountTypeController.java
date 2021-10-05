@@ -1,6 +1,5 @@
 package za.ac.nwu.ac.web.sb.controller;
 
-
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
@@ -133,11 +132,12 @@ public class AccountTypeController {
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
                     LocalDate newCreationDate)
     {
+        //AccountTypeDto accountType = modifyAccountTypeFlow.updateAccountType(mnemonic,newAccountTypeName, newCreationDate);
 
         AccountTypeDto tempAccTpeDto= fetchAccountTypeFlow.getAccountTypeByMnemonic(mnemonic);
         if(null == newCreationDate)
         {
-            newCreationDate = tempAccTpeDto.getCreationDate();
+            newCreationDate = tempAccTpeDto.getCreationDate();              //Set the creation date to today's date if none is provided
         }
         AccountTypeDto accountType = new AccountTypeDto(mnemonic, newAccountTypeName, newCreationDate);
         AccountTypeDto accountTypeResponse = modifyAccountTypeFlow.updateAccountType(accountType);
