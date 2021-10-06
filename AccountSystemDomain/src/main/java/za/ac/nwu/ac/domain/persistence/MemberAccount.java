@@ -8,7 +8,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "TBL_ACCOUNT", schema = "ACCSYS")     //Table name & Username (Schema might not be needed)
-public class UserAccount implements Serializable {
+public class MemberAccount implements Serializable {
 
     private static final long serialVersionUID = 1721935955949522116L;
 
@@ -18,7 +18,7 @@ public class UserAccount implements Serializable {
     private Long memberId;
     private LocalDate creationDate;
 
-    public UserAccount(Long userAccountId, Long accountTypeId, Integer accountBalance, Long memberId, LocalDate creationDate) {
+    public MemberAccount(Long userAccountId, Long accountTypeId, Integer accountBalance, Long memberId, LocalDate creationDate) {
         this.userAccountId = userAccountId;
         this.accountTypeId = accountTypeId;
         this.accountBalance = accountBalance;
@@ -26,11 +26,17 @@ public class UserAccount implements Serializable {
         this.creationDate = creationDate;
     }
 
-    public UserAccount(Long accountTypeId, Integer accountBalance, Long memberId, LocalDate creationDate) {
+    public MemberAccount(Long accountTypeId, Integer accountBalance, Long memberId, LocalDate creationDate) {
         this.accountTypeId = accountTypeId;
         this.accountBalance = accountBalance;
         this.memberId = memberId;
         this.creationDate = creationDate;
+    }
+
+    public MemberAccount(Long userAccountId, Integer accountBalance, Long memberId) {
+        this.userAccountId = userAccountId;
+        this.accountBalance = accountBalance;
+        this.memberId = memberId;
     }
 
     @Id
@@ -81,7 +87,7 @@ public class UserAccount implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UserAccount that = (UserAccount) o;
+        MemberAccount that = (MemberAccount) o;
         return Objects.equals(userAccountId, that.userAccountId) && Objects.equals(accountTypeId, that.accountTypeId) && Objects.equals(accountBalance, that.accountBalance) && Objects.equals(memberId, that.memberId) && Objects.equals(creationDate, that.creationDate);
     }
 
@@ -100,4 +106,7 @@ public class UserAccount implements Serializable {
                 ", creationDate=" + creationDate +
                 '}';
     }
+
+    /*TODO update users to members /*/
+
 }

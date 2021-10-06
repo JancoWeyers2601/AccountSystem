@@ -80,7 +80,7 @@ public class AccountTypeController {
                     example = "MILES",
                     name = "mnemonic",
                     required = true)
-            @PathVariable("mnemonic") final String mnemonic)                            //Typically a mandatory, PathVariable is needed
+            @PathVariable("mnemonic") final String mnemonic)
     {
         AccountTypeDto accountType = fetchAccountTypeFlow.getAccountTypeByMnemonic(mnemonic);
         GeneralResponse<AccountTypeDto> response = new GeneralResponse<>(true, accountType);
