@@ -36,6 +36,7 @@ public class MemberAccountTranslatorImpl implements MemberAccountTranslator
 
     }
 
+
     @Override
     public MemberAccountDto updateMemberAccount(Integer val_new, Long member, Long account)
     {

@@ -43,7 +43,7 @@ public class MemberAccount implements Serializable {
     }
 
     @Id
-    @SequenceGenerator(name = "USER_ACCOUNT_ID_SEQ", sequenceName = "ACCSYS.USER_ACCOUNT_ID_SEQ", allocationSize = 1)       //SequenceName =?
+    @SequenceGenerator(name = "MEMBER_ACCOUNT_ID_SEQ", sequenceName = "ACCSYS.MEMBER_ACCOUNT_ID_SEQ", allocationSize = 1)       //SequenceName =?
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USER_ACCOUNT_ID_SEQ")
     @Column(name = "PK_TBL_ACCOUNT") //Primary key column
     public Long getUserAccountId() {

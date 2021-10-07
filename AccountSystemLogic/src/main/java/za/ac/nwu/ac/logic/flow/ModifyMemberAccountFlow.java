@@ -7,10 +7,8 @@ import javax.transaction.Transactional;
 public interface ModifyMemberAccountFlow
 {
     @Transactional
-    MemberAccountDto Add_Currency (Integer val,Long member,Long account);
+    MemberAccountDto removeCurrency(Integer subtractVal, Long memberId, Long accountTypeId);
 
     @Transactional
-    MemberAccountDto Remove_Currency (Integer val,Long member,Long account);
-
-
+    MemberAccountDto addCurrency(Integer AddVal, Long memberId, Long accountTypeId);
 }

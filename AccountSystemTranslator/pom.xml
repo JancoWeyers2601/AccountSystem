@@ -20,23 +20,25 @@
             <version>${project.version}</version>
             <scope>provided</scope>
         </dependency>
-
         <dependency>
             <groupId>za.ac.nwu.ac</groupId>
             <artifactId>AccountSystemRepository</artifactId>
             <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>
-
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>5.3.10.Final</version>
-        </dependency>
-
     </dependencies>
 
-    <build>
+    <!--<build>
+        <plugins>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>org.jacoco.build</artifactId>
+            </plugin>
+        </plugins>
+    </build>-->
+
+
+    <build>                                                 <!--Build for code coverage-->
         <plugins>
             <plugin>
                 <groupId>org.jacoco</groupId>
@@ -44,5 +46,6 @@
             </plugin>
         </plugins>
     </build>
+
 
 </project>

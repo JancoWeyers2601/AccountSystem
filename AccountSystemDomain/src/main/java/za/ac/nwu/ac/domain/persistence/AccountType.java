@@ -41,7 +41,7 @@ public class AccountType implements Serializable {
 
 
     @Id
-    @SequenceGenerator(name = "VIT_RSA_GENERIC_SEQ", sequenceName = "ACCSYS.VIT_RSA_GENERIC_SEQ", allocationSize = 1)       //SequenceName =?
+    @SequenceGenerator(name = "SEQ_ACCOUNT", sequenceName = "ACCSYS.SEQ_ACCOUNT", allocationSize = 1)       //SequenceName =?
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "VIT_RSA_GENERIC_SEQ")
     @Column(name = "ACCOUNT_TYPE_ID") //Primary key column
     public long getAccountTypeID() {

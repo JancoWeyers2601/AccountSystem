@@ -10,64 +10,76 @@ import za.ac.nwu.ac.translater.MemberAccountTranslator;
 import javax.transaction.Transactional;
 
 @Component
-public class ModifyMemberAccountFlowImpl implements ModifyMemberAccountFlow
-{
+public class ModifyMemberAccountFlowImpl implements ModifyMemberAccountFlow {
+
     private static final Logger LOGGER = LoggerFactory.getLogger(ModifyMemberAccountFlowImpl.class);
+    private final MemberAccountTranslator memberAccountTranslator;
 
-    private final MemberAccountTranslator MAC;
-
-    public ModifyMemberAccountFlowImpl(MemberAccountTranslator mac)
-    {
-        MAC = mac;
+    public ModifyMemberAccountFlowImpl(MemberAccountTranslator userAccountTranslator) {
+        this.memberAccountTranslator = userAccountTranslator;
     }
+
 
     @Transactional
     @Override
-    public MemberAccountDto Add_Currency(Integer val, Long member, Long account)
+    public MemberAccountDto removeCurrency(Integer subtractVal, Long memberId, Long accountTypeId)
     {
-        if(val>0)
+        if(subtractVal >= 0)
         {
-
+            subtractVal = (-1 * subtractVal);
         }
+        LOGGER.info("The UserAccount te Update has input values: " +
+                "\nSubtractValue = {}" +
+                "\nMemberID = {}" +
+                "\nAccountTypeID = {}",subtractVal, memberId, accountTypeId);
 
-        return null;
-    }
+        Integer oldBal =0;
+        Integer newBal =0;
 
-    @Transactional
-    @Override
-    public MemberAccountDto Remove_Currency(Integer val, Long member, Long account)
-    {
-        if(val>0)
-        {
-            val = val * -1;
-        }
+        oldBal =Integer.parseInt(String.valueOf(memberAccountTranslator.getMemberByMemberIDandAccountID(memberId, accountTypeId).getAccountBalance()));
 
-        LOGGER.info("The member account has values to update"+
-                "\nval = {}" +
-                "\nmember = {}" +
-                "\naccount = {}" , val,member,account);
-
-        Integer val_db = 0;
-        Integer val_new = 0 ;
-
-        val_db = Integer.parseInt(String.valueOf(MAC.getMemberByMemberIDandAccountID(member,account).getAccountBalance()));
-
-        if (val + val_db >= 0)
-        {
+        if((subtractVal + oldBal) >= 0){
             LOGGER.info("Transaction is valid");
-            val_new = val + val_db ;
-            MemberAccountDto result = MAC.updateMemberAccount(val_new,member,account);
-            LOGGER.info("UserAccount was updated with new value {} " , result);
+            newBal = oldBal + subtractVal;
+            MemberAccountDto result = memberAccountTranslator.updateMemberAccount(newBal, memberId, accountTypeId);
+            LOGGER.info("UserAccount was updated and has return object {}", result);
             return result;
+        }else{
+            LOGGER.warn("Transaction is not valid - Cannot subtract more tha you own!");
+            throw new RuntimeException("Unable to update the database");
         }
-        else
+    }
+
+    @Transactional
+    @Override
+    public MemberAccountDto addCurrency(Integer AddVal, Long memberId, Long accountTypeId)
+    {
+        if(AddVal <= 0)
         {
-            LOGGER.warn("Transaction is not valid Unable to remove more than what you have");
-            throw new RuntimeException("unable to update the database");
-
+            LOGGER.warn("Cannot add negative or 0 amounts ");
+            throw new RuntimeException("Cannot add negative or 0 amounts");
         }
 
 
+        LOGGER.info("The UserAccount te Update has input values: " +
+                "\nSubtractValue = {}" +
+                "\nMemberID = {}" +
+                "\nAccountTypeID = {}",AddVal, memberId, accountTypeId);
 
+        Integer oldBal =0;
+        Integer newBal =0;
+
+        oldBal =Integer.parseInt(String.valueOf(memberAccountTranslator.getMemberByMemberIDandAccountID(memberId, accountTypeId).getAccountBalance()));
+
+        if((AddVal + oldBal) >= 0){
+            LOGGER.info("Transaction is valid");
+            newBal = oldBal + AddVal;
+            MemberAccountDto result = memberAccountTranslator.updateMemberAccount(newBal, memberId, accountTypeId);
+            LOGGER.info("UserAccount was updated and has return object {}", result);
+            return result;
+        }else{
+            LOGGER.warn("Transaction is not valid - Cannot subtract more tha you own!");
+            throw new RuntimeException("Unable to update the database");
+        }
     }
 }

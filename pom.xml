@@ -15,7 +15,7 @@
     <artifactId>AccountSystem</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <description>Discovery Account System</description>
+    <description>This is my Account System for Discovery</description>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -23,8 +23,9 @@
 
         <springfox-swagger.version>2.9.2</springfox-swagger.version>
         <swagger.version>1.5.20</swagger.version>
+        <!--        <springfox-bean.version>2.4.5</springfox-bean.version>-->
 
-        <haltOnFailure>false</haltOnFailure>
+        <haltOnFailure>false</haltOnFailure>                                            <!--******!!! Should be true !!!******-->
     </properties>
 
     <modules>
@@ -35,7 +36,7 @@
         <module>AccountSystemWebSpringBoot</module>
     </modules>
 
-    <dependencyManagement>
+    <dependencyManagement>                                                      <!--All of these dependencies are available for the child poms-->
         <dependencies>
             <dependency>
                 <groupId>io.springfox</groupId>
@@ -78,17 +79,40 @@
                 <artifactId>spring-boot-starter-web</artifactId>
                 <version>2.1.6.RELEASE</version>
             </dependency>
-
             <dependency>
                 <groupId>com.oracle.database.jdbc</groupId>
                 <artifactId>ojdbc10</artifactId>
-                <version>19.10.0.0</version>
+                <version>19.10.0.0</version>                                <!--Find version number in Oracle -> Help > about-->
             </dependency>
-
+            <!--<dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-jpa</artifactId>
+                <version>2.5.4</version>
+            </dependency>-->
         </dependencies>
     </dependencyManagement>
 
-    <dependencies>
+    <dependencies>                                      <!---->
+        <!-- <dependency>                                                    &lt;!&ndash;Dependency for unit testing&ndash;&gt;
+             <groupId>junit</groupId>
+             <artifactId>junit</artifactId>
+             <scope>test</scope>
+         </dependency>
+         <dependency>                                    &lt;!&ndash;mockito dependencies for testing spring beans&ndash;&gt;
+             <groupId>org.mockito</groupId>
+             <artifactId>mockito-core</artifactId>
+             <scope>test</scope>
+         </dependency>
+         <dependency>                                    &lt;!&ndash;mockito dependencies for testing spring beans&ndash;&gt;
+             <groupId>org.mockito</groupId>
+             <artifactId>mockito-inline</artifactId>
+             <scope>test</scope>
+         </dependency>
+         <dependency>                                    &lt;!&ndash;mockito dependencies for testing spring beans&ndash;&gt;
+             <groupId>org.mockito</groupId>
+             <artifactId>mockito-junit-jupiter</artifactId>
+             <scope>test</scope>
+         </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -96,71 +120,55 @@
         </dependency>
     </dependencies>
 
-    <build>
+    <build>                                             <!---->
         <pluginManagement>
-
             <plugins>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-war-plugin</artifactId>
                     <version>3.3.1</version>
                 </plugin>
-
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <version>2.1.6.RELEASE</version>
                 </plugin>
-
-                <plugin>
+                <plugin>                                <!--Plugin for jacoco to check code coverage-->
                     <groupId>org.jacoco</groupId>
                     <artifactId>jacoco-maven-plugin</artifactId>
                     <version>0.8.3</version>
                     <configuration>
-
-                        <!-- mvn clean install -DhaltOnFailure=false -->
+                        <!--TODO: Use: "mvn clean install -DhaltOnFailure=false" to continue builds locally that fail test coverage-->
                         <haltOnFailure>${haltOnFailure}</haltOnFailure>
-
                         <rules>
                             <rule>
                                 <element>CLASS</element>
-
                                 <excludes>
                                     <exclude>za.ac.nwu.ac.domain.dto.*</exclude>
                                     <exclude>za.ac.nwu.ac.logic.config.LogicConfig</exclude>
                                     <exclude>za.ac.nwu.ac.repo.config.RepositoryConfig</exclude>
                                 </excludes>
-
                                 <limits>
-
                                     <limit>
                                         <counter>INSTRUCTION</counter>
                                         <value>COVEREDRATIO</value>
                                         <minimum>0.8</minimum>
                                     </limit>
-
                                     <limit>
                                         <counter>LINE</counter>
                                         <value>COVEREDRATIO</value>
                                         <minimum>0.8</minimum>
                                     </limit>
-
                                     <limit>
                                         <counter>BRANCH</counter>
                                         <value>COVEREDRATIO</value>
                                         <minimum>0.8</minimum>
                                     </limit>
-
                                 </limits>
-
                             </rule>
-
                         </rules>
-
                     </configuration>
-
                     <executions>
-
                         <execution>
                             <id>jacoco-check</id>
                             <phase>test</phase>
@@ -168,14 +176,12 @@
                                 <goal>check</goal>
                             </goals>
                         </execution>
-
                         <execution>
                             <id>default-prepare-agent</id>
                             <goals>
                                 <goal>prepare-agent</goal>
                             </goals>
                         </execution>
-
                         <execution>
                             <id>default-report</id>
                             <phase>prepare-package</phase>
@@ -183,10 +189,22 @@
                                 <goal>report</goal>
                             </goals>
                         </execution>
-
                     </executions>
                 </plugin>
             </plugins>
         </pluginManagement>
+        <!--<plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.0</version>
+                <configuration>
+                    <forkCount>3</forkCount>
+                    <reuseForks>true</reuseForks>
+                    <argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
+                </configuration>
+            </plugin>
+        </plugins>-->
     </build>
+
 </project>
