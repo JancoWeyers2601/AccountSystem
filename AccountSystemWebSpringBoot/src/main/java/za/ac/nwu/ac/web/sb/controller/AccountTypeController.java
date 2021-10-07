@@ -142,7 +142,7 @@ public class AccountTypeController {
         AccountTypeDto accountType = new AccountTypeDto(mnemonic, newAccountTypeName, newCreationDate);
         AccountTypeDto accountTypeResponse = modifyAccountTypeFlow.updateAccountType(accountType);
         GeneralResponse<AccountTypeDto> response = new GeneralResponse<>(true, accountType);
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
+        return new ResponseEntity<>(response, HttpStatus.OK);
 
     }
 

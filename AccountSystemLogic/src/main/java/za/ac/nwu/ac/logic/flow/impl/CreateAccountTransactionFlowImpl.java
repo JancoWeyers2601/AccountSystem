@@ -20,7 +20,7 @@ public class CreateAccountTransactionFlowImpl implements CreateAccountTransactio
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CreateAccountTransactionFlowImpl.class);       //how to add LOGGING for a class
 
-    private final AccountTransactionTranslator accountTransactionTranslator;
+    /*private final AccountTransactionTranslator accountTransactionTranslator;
     private final MemberAccountTranslator MemberAccountTranslator;
     private final FetchAccountTypeFlow fetchAccountTypeFlow;
 
@@ -32,7 +32,7 @@ public class CreateAccountTransactionFlowImpl implements CreateAccountTransactio
         this.accountTransactionTranslator = accountTransactionTranslator;
         this.MemberAccountTranslator = userAccountTranslator;
         this.fetchAccountTypeFlow = fetchAccountTypeFlow;
-    }
+    }*/
 
     /*@Override
     public AccountTransactionDto create(AccountTransactionDto accountTransactionDto)

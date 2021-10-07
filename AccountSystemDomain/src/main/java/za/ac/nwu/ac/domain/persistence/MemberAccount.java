@@ -18,6 +18,9 @@ public class MemberAccount implements Serializable {
     private Long memberId;
     private LocalDate creationDate;
 
+    public MemberAccount() {
+    }
+
     public MemberAccount(Long userAccountId, Long accountTypeId, Integer accountBalance, Long memberId, LocalDate creationDate) {
         this.userAccountId = userAccountId;
         this.accountTypeId = accountTypeId;
@@ -42,7 +45,7 @@ public class MemberAccount implements Serializable {
     @Id
     @SequenceGenerator(name = "USER_ACCOUNT_ID_SEQ", sequenceName = "ACCSYS.USER_ACCOUNT_ID_SEQ", allocationSize = 1)       //SequenceName =?
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USER_ACCOUNT_ID_SEQ")
-    @Column(name = "USER_ACCOUNT_ID") //Primary key column
+    @Column(name = "PK_TBL_ACCOUNT") //Primary key column
     public Long getUserAccountId() {
         return userAccountId;
     }
@@ -51,6 +54,7 @@ public class MemberAccount implements Serializable {
         this.userAccountId = userAccountId;
     }
 
+    @Column(name = "FK_ACCOUNTTYPE")
     public Long getAccountTypeId() {
         return accountTypeId;
     }
@@ -59,6 +63,7 @@ public class MemberAccount implements Serializable {
         this.accountTypeId = accountTypeId;
     }
 
+    @Column(name = "TBL_ACCOUNT_BALANCE")
     public Integer getAccountBalance() {
         return accountBalance;
     }
@@ -67,6 +72,7 @@ public class MemberAccount implements Serializable {
         this.accountBalance = accountBalance;
     }
 
+    @Column(name = "FK_TBL_MEMBER")
     public Long getMemberId() {
         return memberId;
     }
@@ -75,6 +81,7 @@ public class MemberAccount implements Serializable {
         this.memberId = memberId;
     }
 
+    @Column(name = "CREATIONDATE")
     public LocalDate getCreationDate() {
         return creationDate;
     }

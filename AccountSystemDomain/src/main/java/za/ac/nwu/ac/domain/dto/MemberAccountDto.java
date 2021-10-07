@@ -124,11 +124,11 @@ public class MemberAccountDto implements Serializable {
 
     @Override
     public String toString() {
-        return "UserAccountDto{" +
-                "userAccountId=" + Account +
-                ", accountTypeId=" + accountType +
+        return "MemberAccountDto{" +
+                "Account=" + Account +
+                ", accountType=" + accountType +
                 ", accountBalance=" + accountBalance +
-                ", memberId=" + member +
+                ", member=" + member +
                 '}';
     }
 }

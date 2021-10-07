@@ -1,5 +1,6 @@
 package za.ac.nwu.ac.translater.impl;
 
+import org.springframework.stereotype.Component;
 import za.ac.nwu.ac.domain.dto.MemberAccountDto;
 import za.ac.nwu.ac.domain.persistence.MemberAccount;
 import za.ac.nwu.ac.repo.persistence.MemberAccountRepository;
@@ -8,6 +9,7 @@ import za.ac.nwu.ac.translater.MemberAccountTranslator;
 import javax.crypto.Mac;
 import java.util.logging.Logger;
 
+@Component
 public class MemberAccountTranslatorImpl implements MemberAccountTranslator
 {
    /* private static final Logger LOGGER = Logger*/
@@ -23,9 +25,9 @@ public class MemberAccountTranslatorImpl implements MemberAccountTranslator
     {
         try
         {
-            MemberAccount ua = memberAccountRepository.getMemberByMemberIDandAccountID(member,account);
+            MemberAccount ma = memberAccountRepository.getMemberByMemberIDandAccountID(member,account);
 
-            return new MemberAccountDto(ua);
+            return new MemberAccountDto(ma);
         }
         catch (Exception e)
         {

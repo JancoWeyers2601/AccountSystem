@@ -10,13 +10,13 @@ import za.ac.nwu.ac.translater.MemberAccountTranslator;
 import javax.transaction.Transactional;
 
 @Component
-public class ModifyMemberAccountImpl implements ModifyMemberAccountFlow
+public class ModifyMemberAccountFlowImpl implements ModifyMemberAccountFlow
 {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ModifyMemberAccountImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ModifyMemberAccountFlowImpl.class);
 
     private final MemberAccountTranslator MAC;
 
-    public ModifyMemberAccountImpl(MemberAccountTranslator mac)
+    public ModifyMemberAccountFlowImpl(MemberAccountTranslator mac)
     {
         MAC = mac;
     }
@@ -33,6 +33,7 @@ public class ModifyMemberAccountImpl implements ModifyMemberAccountFlow
         return null;
     }
 
+    @Transactional
     @Override
     public MemberAccountDto Remove_Currency(Integer val, Long member, Long account)
     {
